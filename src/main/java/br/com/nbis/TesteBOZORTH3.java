@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
  * @link https://coderanch.com/t/480489/java/ImageMagick-Java-Runtime-Exec
  * @link https://stackoverflow.com/questions/18010604/running-java-runtime-exec-for-multiple-process
  * @link https://www.developer.com/java/data/understanding-java-process-and-java-processbuilder.html
+ * 
  * @author rodolfo.ruffer
  *
  */

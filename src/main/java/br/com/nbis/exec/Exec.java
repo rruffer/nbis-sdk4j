@@ -28,7 +28,7 @@ public class Exec {
 		try {
 
 			
-			Commands command = new CommandsCWSQ();
+			Commands command = executables.getCommands();
 			String[] commands = command.commands(fileExec, filePath);
 
 			ExecRuntime.execRuntime(commands);

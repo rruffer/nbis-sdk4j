@@ -12,13 +12,12 @@ public class ExecRuntime {
 	private static final Logger log = LogManager.getLogger(ExecRuntime.class);
 
 	public static void execRuntime(String[] commands) throws IOException {
-		
+
 		Runtime rt = Runtime.getRuntime();
 		Process proc = rt.exec(commands);
 
-		try(BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-			BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()))) {
-
+		try (BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+				BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()))) {
 
 			// read the output from the command
 			log.debug("Here is the standard output of the command: ");
