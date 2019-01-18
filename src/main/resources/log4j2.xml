@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Properties>
+		<Property name="baseDir">logs</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<!-- <PatternLayout pattern="%d{dd/MM/yyyy HH:mm:ss.SSS} [%t] %-5level 
+				%logger{36} - %msg%n"/> -->
+
+			<PatternLayout
+				pattern="%d{dd/MM/yyyy - HH:mm:ss:SSS} - %highlight{%level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue} %logger{36} - %msg%n" />
+		</Console>
+		<!-- Gerando arquivo log -->
+<!-- 		<RollingFile name="arquivoLog" fileName="${baseDir}/log.txt"
+			filePattern="${baseDir}/$${date:yyyyMMdd}/log_%d{dd_MM_yyyy-HH_mm_ss}-%i.txt"> -->
+		<RollingFile name="arquivoLog" fileName="${baseDir}/log.txt"
+			filePattern="${baseDir}/log_%d{dd_MM_yyyy-HH_mm_ss}-%i.txt">
+			<PatternLayout
+				pattern="%d{dd/MM/yyyy HH:mm:ss:SSS} [%t] %-5level - %logger{36} - %msg%n" />
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<!-- <DefaultRolloverStrategy max="20" /> -->
+			<DefaultRolloverStrategy>
+				<Delete basePath="${baseDir}" maxDepth="1">
+					<IfFileName glob="*log_*.txt" />
+					<IfLastModified age="2d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		<!-- Enviando email -->
+		<!-- <SMTP smtpUsername="rodolfo@informal.com.br" smtpPassword="alucard@22" 
+			name="mail" subject="Error Log" to="rodolfo@informal.com.br" from="rodolfo@informal.com.br" 
+			smtpHost="smtp.informal.com.br" smtpPort="587"> </SMTP> -->
+	</Appenders>
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="arquivoLog" />
+			<!-- <AppenderRef ref="mail" /> -->
+		</Root>
+	</Loggers>
+</Configuration>
