@@ -31,7 +31,7 @@ public class UtilLoader {
 			file = File.createTempFile("tmp", null, null);
 			log.debug(file.getAbsolutePath());
 			FileUtils.copyInputStreamToFile(stream, file);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			log.error("Erro ao criar arquivo temporário: ", e);
 		}
 		

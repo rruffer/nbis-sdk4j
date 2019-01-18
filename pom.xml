@@ -30,11 +30,12 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
 							<transformers>
 								<!-- add Main-Class to manifest file -->
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>br.nbis.com.TesteCWSQ</mainClass>
+									<mainClass>br.com.nbis.TesteCWSQ</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>
