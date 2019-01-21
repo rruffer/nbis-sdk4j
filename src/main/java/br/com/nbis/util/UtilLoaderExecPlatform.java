@@ -5,10 +5,10 @@ import java.io.File;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import enums.Executables;
-import enums.Sistemas;
-import enums.SistemasPath;
-import enums.TypeExecutable;
+import br.com.nbis.enums.Executables;
+import br.com.nbis.enums.Sistemas;
+import br.com.nbis.enums.SistemasPath;
+import br.com.nbis.enums.TypeExecutable;
 
 public class UtilLoaderExecPlatform {
 	

@@ -10,15 +10,16 @@ import javax.imageio.ImageIO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.nbis.Commands;
-
-public class CommandsCWSQ implements Commands{
+public class CommandsCWSQ implements Command{
 	
 	private final Logger log = LogManager.getLogger(getClass());
 
 	@Override
-	public String[] commands(File fileExec, File filePath) {
+	public String[] command(File... file) {
 		String[] commands = null;
+		
+		File fileExec = file[0];
+		File filePath = file[1];
 		
 		try {
 			BufferedImage image = ImageIO.read(filePath);

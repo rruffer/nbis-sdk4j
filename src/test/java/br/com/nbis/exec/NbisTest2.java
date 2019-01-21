@@ -6,16 +6,18 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.nbis.enums.Executables;
 import br.com.nbis.util.UtilLoader;
-import enums.Executables;
 
-class ExecTest {
+class NbisTest2 {
+	
+	
 
 	@Test
 	void executeCWSQ() {
 		
 		
-		Exec exec = new Exec();
+		Nbis exec = new Nbis();
 		
 //		File file = UtilLoader.getFile("/img/anelar-dir.png");
 		File file = new File("anelar-dir.png");
@@ -30,7 +32,7 @@ class ExecTest {
 	@Test
 	void executeNFIQ() {
 
-		Exec exec = new Exec();
+		Nbis exec = new Nbis();
 
 //		File file = UtilLoader.getFile("/img/anelar-dir.png");
 		File file = new File("anelar-dir.png");
@@ -46,7 +48,24 @@ class ExecTest {
 	@Test
 	void executeMINDTCT() {
 		
-		Exec exec = new Exec();
+		Nbis exec = new Nbis();
+		
+//		File file = UtilLoader.getFile("/img/anelar-dir.png");
+		File file = new File("anelar-dir.png");
+		File fileWSQ = new File("anelar-dir.wsq");
+		
+		exec.execute(file, Executables.CWSQ);
+		exec.execute(fileWSQ, Executables.NFIQ);
+		exec.execute(fileWSQ, Executables.MINDTCT);
+		
+//		assertTrue(execute.exists());
+		
+	}
+	
+	@Test
+	void executeBOZORTH3() {
+		
+		Nbis exec = new Nbis();
 		
 //		File file = UtilLoader.getFile("/img/anelar-dir.png");
 		File file = new File("anelar-dir.png");

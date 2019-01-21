@@ -1,25 +1,26 @@
-package enums;
+package br.com.nbis.enums;
 
-import br.com.nbis.Commands;
+import br.com.nbis.wsq.Command;
+import br.com.nbis.wsq.CommandsBOZORTH3;
 import br.com.nbis.wsq.CommandsCWSQ;
 import br.com.nbis.wsq.CommandsMINDTCT;
 import br.com.nbis.wsq.CommandsNFIQ;
 
 public enum Executables {
 
-	BOZORTH3(null),
+	BOZORTH3(new CommandsBOZORTH3()),
 	CWSQ(new CommandsCWSQ()),
 	DWSQ(null),
 	MINDTCT(new CommandsMINDTCT()),
 	NFIQ(new CommandsNFIQ());
 	
-	private Commands commands;
+	private Command commands;
 	
-	private Executables(Commands commands) {
+	private Executables(Command commands) {
 		this.commands = commands;
 	}
 	
-	public Commands getCommands() {
+	public Command getCommands() {
 		return commands;
 	}
 	

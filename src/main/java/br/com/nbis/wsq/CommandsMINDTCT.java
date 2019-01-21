@@ -6,15 +6,16 @@ import java.util.stream.Stream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.nbis.Commands;
-
-public class CommandsMINDTCT implements Commands{
+public class CommandsMINDTCT implements Command{
 	
 	private final Logger log = LogManager.getLogger(getClass());
 
 	@Override
-	public String[] commands(File fileExec, File filePath) {
+	public String[] command(File... file) {
 		String[] commands = null;
+		
+		File fileExec = file[0];
+		File filePath = file[1];
 		
 		try {
 			commands = Stream.of(fileExec.getAbsolutePath(), "-b", "-m1", filePath.getAbsolutePath(), filePath.getName()).toArray(String[]::new);

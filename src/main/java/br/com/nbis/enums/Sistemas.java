@@ -1,4 +1,4 @@
-package enums;
+package br.com.nbis.enums;
 
 public enum Sistemas {
 	

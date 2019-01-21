@@ -6,13 +6,16 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.nbis.Commands;
+import br.com.nbis.bozorth3.BOZORTH3;
+import br.com.nbis.enums.Executables;
+import br.com.nbis.mindtct.MINDTCT;
 import br.com.nbis.util.UtilLoader;
 import br.com.nbis.util.UtilLoaderExecPlatform;
-import br.com.nbis.wsq.CommandsCWSQ;
-import enums.Executables;
+import br.com.nbis.wsq.Command;
+import br.com.nbis.wsq.WSQ;
+import br.com.nbis.nfiq.NFIQ;
 
-public class Exec {
+public class Nbis {
 	
 	private final Logger log = LogManager.getLogger(getClass());
 
@@ -27,13 +30,12 @@ public class Exec {
 
 		try {
 
-			
-			Commands command = executables.getCommands();
-			String[] commands = command.commands(fileExec, filePath);
+			Command command = executables.getCommands();
+			String[] commands = command.command(fileExec, filePath);
 
 			ExecRuntime.execRuntime(commands);
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			log.error("", e);
 		} finally {
 			fileExec.deleteOnExit();
@@ -42,5 +44,27 @@ public class Exec {
 		return outputFile;
 
 	}
+	
+	public static WSQ wsq() {
+		return WSQ.getInstance();
+	}
+	
+	public static int nfiq(String img) {
+		return NFIQ.getInstance().quality(img);
+		
+	}
+	
+	public static void mindtct(String img) {
+		MINDTCT.getInstance().template(img);
+		
+	}
+	
+	public static int bozorth3(String img1, String img2) {
+		return BOZORTH3.getInstance().merge(img1, img2);
+		
+	}
+	
+	
+	
 
 }

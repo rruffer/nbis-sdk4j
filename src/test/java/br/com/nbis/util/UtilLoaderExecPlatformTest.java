@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import enums.Executables;
+import br.com.nbis.enums.Executables;
 
 class UtilLoaderExecPlatformTest {
 

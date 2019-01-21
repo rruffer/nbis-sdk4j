@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CommandsNFIQ implements Command{
+public class CommandsBOZORTH3 implements Command{
 	
 	private final Logger log = LogManager.getLogger(getClass());
 
@@ -15,10 +15,11 @@ public class CommandsNFIQ implements Command{
 		String[] commands = null;
 		
 		File fileExec = file[0];
-		File filePath = file[1];
+		File filePath1 = file[1];
+		File filePath2 = file[2];
 		
 		try {
-			commands = Stream.of(fileExec.getAbsolutePath(), filePath.getAbsolutePath()).toArray(String[]::new);
+			commands = Stream.of(fileExec.getAbsolutePath(), "-b", "-m1", "-A", "outfmt=spg", "-T", "20", "-p", filePath1.getAbsolutePath(), filePath2.getAbsolutePath()).toArray(String[]::new);
 		} catch (Exception e) {
 			log.error("Erro ao criar comando nfiq", e);
 		}
