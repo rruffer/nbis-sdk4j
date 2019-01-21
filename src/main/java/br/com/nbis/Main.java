@@ -9,6 +9,11 @@ import java.nio.file.StandardCopyOption;
 
 import org.apache.commons.io.FileUtils;
 
+/**
+ * {@link} https://www.geeksforgeeks.org/jvm-shutdown-hook-java/
+ * @author rodolfo.mindtek
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -31,6 +36,15 @@ public class Main {
 
 		//deletar pasta
 		FileUtils.deleteDirectory(baseDir);
+		
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				System.out.println("Shutdown Hook is running !");
+			}
+		});
+		
+		System.out.println("Application Terminating ..."); 
 
 	}
 
