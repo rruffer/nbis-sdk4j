@@ -1,4 +1,4 @@
-package br.com.nbis.wsq;
+package br.com.nbis.api.wsq;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +54,31 @@ public class WSQ {
 
 			ExecRuntime.execRuntime(commands);
 
+		} catch (Exception e) {
+			log.error("Erro ao codificar imagem: ", e);
+		} finally {
+			fileExec.deleteOnExit();
+		}
+		
+	}
+	
+	public void decoder(String string) {
+		
+		File file = new File(string);
+		
+		Executables exec = Executables.DWSQ;
+		
+		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
+		File fileExec = UtilLoader.getFile(pathFile);
+		
+		try {
+			
+			
+			Command command = exec.getCommands();
+			String[] commands = command.command(fileExec, file);
+			
+			ExecRuntime.execRuntime(commands);
+			
 		} catch (Exception e) {
 			log.error("Erro ao codificar imagem: ", e);
 		} finally {

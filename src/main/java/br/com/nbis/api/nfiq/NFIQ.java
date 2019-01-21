@@ -1,4 +1,4 @@
-package br.com.nbis.nfiq;
+package br.com.nbis.api.nfiq;
 
 import java.io.File;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.nbis.api.wsq.Command;
 import br.com.nbis.enums.Executables;
 import br.com.nbis.exec.ExecRuntime;
 import br.com.nbis.util.UtilLoader;
 import br.com.nbis.util.UtilLoaderExecPlatform;
-import br.com.nbis.wsq.Command;
 
 public class NFIQ {
 

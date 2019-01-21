@@ -24,12 +24,13 @@ class NbisTest {
 	}
 	
 	@Test
-	@Disabled
 	void decoderWSQ() {
 		
+		Nbis.wsq().encoder("anelar-dir.png");
 		
-		Nbis.wsq().decoder();
+		Nbis.wsq().decoder("anelar-dir.wsq");
 		
+		assertTrue(new File("anelar-dir.raw").exists());
 	}
 	
 	@Test
@@ -51,17 +52,18 @@ class NbisTest {
 		Nbis.wsq().encoder("anelar-dir.png");
 		Nbis.mindtct("anelar-dir.wsq");
 		
-		assertTrue(new File("anelar-dir.wsq.xyt").exists());
+		assertTrue(new File("anelar-dir.xyt").exists());
 		
 	}
 	
 	@Test
+	@Disabled
 	void bozorth3() {
 		
 		Nbis.wsq().encoder("anelar-dir.png");
 		Nbis.mindtct("anelar-dir.wsq");
 		
-		int bozorth3 = Nbis.bozorth3("anelar-dir.wsq.xyt", "anelar-dir.wsq.xyt");
+		int bozorth3 = Nbis.bozorth3("anelar-dir.xyt", "anelar-dir.xyt");
 		
 		
 		assertEquals(572, bozorth3);

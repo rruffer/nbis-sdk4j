@@ -1,4 +1,4 @@
-package br.com.nbis.wsq;
+package br.com.nbis.api.wsq;
 
 public class EncoderWSQ {
 	

@@ -1,1 +1,1 @@
-# nbis-sdk4j
+# NIST Biometric Image Software (NBIS)

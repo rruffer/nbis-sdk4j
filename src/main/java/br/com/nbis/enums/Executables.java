@@ -1,16 +1,17 @@
 package br.com.nbis.enums;
 
-import br.com.nbis.wsq.Command;
-import br.com.nbis.wsq.CommandsBOZORTH3;
-import br.com.nbis.wsq.CommandsCWSQ;
-import br.com.nbis.wsq.CommandsMINDTCT;
-import br.com.nbis.wsq.CommandsNFIQ;
+import br.com.nbis.api.wsq.Command;
+import br.com.nbis.api.wsq.CommandsBOZORTH3;
+import br.com.nbis.api.wsq.CommandsCWSQ;
+import br.com.nbis.api.wsq.CommandsDWSQ;
+import br.com.nbis.api.wsq.CommandsMINDTCT;
+import br.com.nbis.api.wsq.CommandsNFIQ;
 
 public enum Executables {
 
 	BOZORTH3(new CommandsBOZORTH3()),
 	CWSQ(new CommandsCWSQ()),
-	DWSQ(null),
+	DWSQ(new CommandsDWSQ()),
 	MINDTCT(new CommandsMINDTCT()),
 	NFIQ(new CommandsNFIQ());
 	

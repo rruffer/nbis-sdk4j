@@ -1,4 +1,4 @@
-package br.com.nbis.wsq;
+package br.com.nbis.api.wsq;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

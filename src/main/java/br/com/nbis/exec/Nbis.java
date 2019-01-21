@@ -1,20 +1,29 @@
 package br.com.nbis.exec;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.nbis.bozorth3.BOZORTH3;
+import br.com.nbis.api.bozorth3.BOZORTH3;
+import br.com.nbis.api.mindtct.MINDTCT;
+import br.com.nbis.api.nfiq.NFIQ;
+import br.com.nbis.api.wsq.Command;
+import br.com.nbis.api.wsq.WSQ;
 import br.com.nbis.enums.Executables;
-import br.com.nbis.mindtct.MINDTCT;
 import br.com.nbis.util.UtilLoader;
 import br.com.nbis.util.UtilLoaderExecPlatform;
-import br.com.nbis.wsq.Command;
-import br.com.nbis.wsq.WSQ;
-import br.com.nbis.nfiq.NFIQ;
 
+/**
+ * @link http://www.hjort.co/2015/12/evaluating-nbis-using-fvc2004-databases-part1.html
+ * @link https://stackoverflow.com/questions/15464111/run-cmd-commands-through-java
+ * @link https://coderanch.com/t/480489/java/ImageMagick-Java-Runtime-Exec
+ * @link https://stackoverflow.com/questions/18010604/running-java-runtime-exec-for-multiple-process
+ * @link https://www.developer.com/java/data/understanding-java-process-and-java-processbuilder.html
+ * 
+ * @author rodolfo.ruffer
+ *
+ */
 public class Nbis {
 	
 	private final Logger log = LogManager.getLogger(getClass());
