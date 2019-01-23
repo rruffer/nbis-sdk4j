@@ -18,19 +18,16 @@ import org.junit.jupiter.api.Test;
 class NbisTest {
 
 	@Test
-	@Disabled
 	void encoderStringWSQ() {
 
-		Nbis.wsq().encoder("anelar-dir.png");
-
-		assertTrue(new File("anelar-dir.wsq").exists());
+		assertTrue(Nbis.wsq().encoder("101_1.tif").get().exists());
 
 	}
 
 	@Test
 	@Disabled
 	void encoderFileWSQ() {
-		File file = new File("anelar-dir.png");
+		File file = new File("anelar-dir.bmp");
 		
 		Nbis.wsq().encoder(file);
 
@@ -39,9 +36,10 @@ class NbisTest {
 	}
 	
 	@Test
+	@Disabled
 	void encoderByteArrayWSQ() throws IOException {
 		
-		File file = new File("anelar-dir.png");
+		File file = new File("anelar-dir.bmp");
 		byte[] readAllBytes = Files.readAllBytes(file.toPath());
 		
 		Nbis.wsq().encoder(readAllBytes);
@@ -54,7 +52,7 @@ class NbisTest {
 	@Disabled
 	void decoderWSQ() {
 
-		Nbis.wsq().encoder("anelar-dir.png");
+		Nbis.wsq().encoder("anelar-dir.bmp");
 
 		Nbis.wsq().decoder("anelar-dir.wsq");
 
@@ -65,7 +63,7 @@ class NbisTest {
 	@Disabled
 	void nfiq() {
 
-		Nbis.wsq().encoder("anelar-dir.png");
+		Nbis.wsq().encoder("anelar-dir.bmp");
 
 		int nfiq = Nbis.nfiq("anelar-dir.wsq");
 
@@ -77,7 +75,7 @@ class NbisTest {
 	@Disabled
 	void mindtct() {
 
-		Nbis.wsq().encoder("anelar-dir.png");
+		Nbis.wsq().encoder("anelar-dir.bmp");
 		Nbis.mindtct("anelar-dir.wsq");
 
 		assertTrue(new File("anelar-dir.xyt").exists());
@@ -88,7 +86,7 @@ class NbisTest {
 	@Disabled
 	void bozorth3() {
 
-		Nbis.wsq().encoder("anelar-dir.png");
+		Nbis.wsq().encoder("anelar-dir.bmp");
 		Nbis.mindtct("anelar-dir.wsq");
 
 		int bozorth3 = Nbis.bozorth3("anelar-dir.xyt", "anelar-dir.xyt");

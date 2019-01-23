@@ -3,8 +3,12 @@ package br.com.nbis;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Arrays;
+
+import javax.imageio.ImageIO;
 
 import org.apache.tika.Tika;
+import org.apache.tika.metadata.TIFF;
 
 /**
  * {@link} https://www.geeksforgeeks.org/jvm-shutdown-hook-java/
@@ -44,12 +48,15 @@ public class Main {
 //		System.out.println("Application Terminating ..."); 
 
 		
-		File file = new File("anelar-dir.wsq");
+//		File file = new File("anelar-dir.bmp");
+		File file = new File("101_1.tif");
 		byte[] img = Files.readAllBytes(file.toPath());
 		
 		String contentType = new Tika().detect(img);
 		
 		System.out.println(contentType);
+		
+		
 		
 	}
 

@@ -27,9 +27,9 @@ public class WSQ {
 	}
 
 
-	public void encoder(String img) {
+	public EncoderWSQ encoder(String img) {
 		
-		encoderWSQ.encoder(img);
+		return new EncoderWSQ(img);
 		
 	}
 	
