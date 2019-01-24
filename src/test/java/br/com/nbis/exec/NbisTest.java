@@ -18,10 +18,17 @@ import org.junit.jupiter.api.Test;
 class NbisTest {
 
 	@Test
-	void encoderStringWSQ() {
+	void encoderStringBmpToWSQ() {
 
-		assertTrue(Nbis.wsq().encoder("101_1.tif").get().exists());
+		assertTrue(Nbis.wsq().encoder("anelar-dir.bmp").get().exists());
 
+	}
+	
+	@Test
+	void encoderStringTiffToWSQ() {
+		
+		assertTrue(Nbis.wsq().encoder("101_1.tiff").get().exists());
+		
 	}
 
 	@Test
