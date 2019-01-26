@@ -10,6 +10,9 @@ import java.nio.file.Files;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import br.com.nbis.api.Nbis;
+import br.com.nbis.exeption.NbisException;
+
 /**
  * @link https://blog.travis-ci.com/2018-10-11-windows-early-release
  * @author rodolfo.mindtek
@@ -18,16 +21,26 @@ import org.junit.jupiter.api.Test;
 class NbisTest {
 
 	@Test
+	@Disabled
 	void encoderStringBmpToWSQ() {
 
-		assertTrue(Nbis.wsq().encoder("anelar-dir.bmp").get().exists());
+		try {
+			assertTrue(Nbis.wsq().encoder("anelar-dir.bmp").getFile().exists());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 	
 	@Test
+	@Disabled
 	void encoderStringTiffToWSQ() {
 		
-		assertTrue(Nbis.wsq().encoder("101_1.tiff").get().exists());
+		try {
+			assertTrue(Nbis.wsq().encoder("101_1.tiff").getFile().exists());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -36,22 +49,30 @@ class NbisTest {
 	void encoderFileWSQ() {
 		File file = new File("anelar-dir.bmp");
 		
-		Nbis.wsq().encoder(file);
+		try {
+			Nbis.wsq().encoder(file);
+			assertTrue(Nbis.wsq().encoder(file).getFile().exists());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		assertTrue(new File("anelar-dir.wsq").exists());
 
 	}
 	
 	@Test
-	@Disabled
-	void encoderByteArrayWSQ() throws IOException {
+	void encoderByteArrayWSQ() {
 		
-		File file = new File("anelar-dir.bmp");
-		byte[] readAllBytes = Files.readAllBytes(file.toPath());
 		
-		Nbis.wsq().encoder(readAllBytes);
+		try {
+			File file = new File("anelar-dir.bmp");
+			byte[] readAllBytes = Files.readAllBytes(file.toPath());
+			assertTrue(Nbis.wsq().encoder(readAllBytes).getFile().exists());
+		} catch (NbisException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		assertTrue(new File("anelar-dir.wsq").exists());
 		
 	}
 
@@ -59,7 +80,12 @@ class NbisTest {
 	@Disabled
 	void decoderWSQ() {
 
-		Nbis.wsq().encoder("anelar-dir.bmp");
+		try {
+			Nbis.wsq().encoder("anelar-dir.bmp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		Nbis.wsq().decoder("anelar-dir.wsq");
 
@@ -70,7 +96,12 @@ class NbisTest {
 	@Disabled
 	void nfiq() {
 
-		Nbis.wsq().encoder("anelar-dir.bmp");
+		try {
+			Nbis.wsq().encoder("anelar-dir.bmp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		int nfiq = Nbis.nfiq("anelar-dir.wsq");
 
@@ -82,7 +113,12 @@ class NbisTest {
 	@Disabled
 	void mindtct() {
 
-		Nbis.wsq().encoder("anelar-dir.bmp");
+		try {
+			Nbis.wsq().encoder("anelar-dir.bmp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Nbis.mindtct("anelar-dir.wsq");
 
 		assertTrue(new File("anelar-dir.xyt").exists());
@@ -93,7 +129,12 @@ class NbisTest {
 	@Disabled
 	void bozorth3() {
 
-		Nbis.wsq().encoder("anelar-dir.bmp");
+		try {
+			Nbis.wsq().encoder("anelar-dir.bmp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Nbis.mindtct("anelar-dir.wsq");
 
 		int bozorth3 = Nbis.bozorth3("anelar-dir.xyt", "anelar-dir.xyt");
