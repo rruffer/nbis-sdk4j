@@ -1,29 +1,19 @@
-package br.com.nbis.api.wsq;
+package br.com.nbis.command;
 
 import java.io.File;
 import java.util.stream.Stream;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import br.com.nbis.exeption.NbisException;
 
-public class CommandsNFIQ implements Command{
-	
-	private final Logger log = LogManager.getLogger(getClass());
+public class CommandsNFIQ implements Command {
 
 	@Override
-	public String[] command(File... file) {
-		String[] commands = null;
-		
+	public String[] command(File... file) throws NbisException {
+
 		File fileExec = file[0];
 		File filePath = file[1];
-		
-		try {
-			commands = Stream.of(fileExec.getAbsolutePath(), filePath.getAbsolutePath()).toArray(String[]::new);
-		} catch (Exception e) {
-			log.error("Erro ao criar comando nfiq", e);
-		}
-		
-		return commands;
+
+		return Stream.of(fileExec.getAbsolutePath(), filePath.getAbsolutePath()).toArray(String[]::new);
 	}
 
 }

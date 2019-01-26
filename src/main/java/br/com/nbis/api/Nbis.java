@@ -1,4 +1,4 @@
-package br.com.nbis.exec;
+package br.com.nbis.api;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,6 +21,10 @@ import br.com.nbis.api.wsq.WSQ;
 public class Nbis {
 	
 	private final Logger log = LogManager.getLogger(getClass());
+	
+	private Nbis() {	
+
+	}
 
 	public static WSQ wsq() {
 		return WSQ.getInstance();

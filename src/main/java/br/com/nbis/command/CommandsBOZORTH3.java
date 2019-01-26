@@ -1,4 +1,4 @@
-package br.com.nbis.api.wsq;
+package br.com.nbis.command;
 
 import java.io.File;
 import java.util.stream.Stream;
@@ -19,6 +19,7 @@ public class CommandsBOZORTH3 implements Command{
 		File filePath2 = file[2];
 		
 		try {
+			//linha de comando bozorth3 -m1 -A outfmt=spg -T 20 -p db1/101_1.xyt db1/*.xyt
 			commands = Stream.of(fileExec.getAbsolutePath(), "-b", "-m1", "-A", "outfmt=spg", "-T", "20", "-p", filePath1.getAbsolutePath(), filePath2.getAbsolutePath()).toArray(String[]::new);
 		} catch (Exception e) {
 			log.error("Erro ao criar comando nfiq", e);

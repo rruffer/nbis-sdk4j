@@ -1,10 +1,12 @@
 package br.com.nbis.api.wsq;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import br.com.nbis.exeption.NbisException;
 
 public class WSQ {
 
@@ -27,22 +29,16 @@ public class WSQ {
 	}
 
 
-	public EncoderWSQ encoder(String img) {
-		
+	public EncoderWSQ encoder(String img) throws IOException {
 		return new EncoderWSQ(img);
-		
 	}
 	
-	public void encoder(File img) {
-		// TODO Auto-generated method stub
-		encoderWSQ.encoder(img);
-		
+	public EncoderWSQ encoder(File img) throws IOException {
+		return new EncoderWSQ(img);
 	}
 	
-	public void encoder(byte[] img) {
-		// TODO Auto-generated method stub
-		encoderWSQ.encoder(img);
-		
+	public EncoderWSQ encoder(byte[] img) throws IOException, NbisException {
+		return new EncoderWSQ(img);
 	}
 	
 	/*

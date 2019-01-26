@@ -1,4 +1,4 @@
-package br.com.nbis.api.wsq;
+package br.com.nbis.command;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,24 +10,28 @@ import javax.imageio.ImageIO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.nbis.exeption.NbisException;
+
 public class CommandsCWSQ implements Command{
 	
 	private final Logger log = LogManager.getLogger(getClass());
 
 	@Override
-	public String[] command(File... file) {
+	public String[] command(File... file) throws NbisException {
 		String[] commands = null;
 		
 		File fileExec = file[0];
 		File filePath = file[1];
 		
+		BufferedImage image = null;
 		try {
-			BufferedImage image = ImageIO.read(filePath);
-			String dimencoesImg = String.format("%d,%d,%d,%d", image.getWidth(), image.getHeight(), image.getColorModel().getPixelSize(), 500);
-			commands = Stream.of(fileExec.getAbsolutePath(), ".75", "wsq", filePath.getAbsolutePath(), "-r", dimencoesImg).toArray(String[]::new);
+			image = ImageIO.read(filePath);
 		} catch (IOException e) {
-			log.error("Erro ao criar comando cwsq", e);
+			log.error("CommandsCWSQ: ", e);
 		}
+		String dimencoesImg = String.format("%d,%d,%d,%d", image.getWidth(), image.getHeight(), image.getColorModel().getPixelSize(), 500);
+		//linha de comando cwsq.exe .75 wsq digital.png -r 800,750,8,500
+		commands = Stream.of(fileExec.getAbsolutePath(), ".75", "wsq", filePath.getAbsolutePath(), "-r", dimencoesImg).toArray(String[]::new);
 		
 		return commands;
 	}

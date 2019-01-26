@@ -1,25 +1,20 @@
-package br.com.nbis.api.wsq;
+package br.com.nbis.command;
 
 import java.io.File;
 import java.util.stream.Stream;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import br.com.nbis.exeption.NbisException;
 
 public class CommandsDWSQ implements Command {
 
-	private final Logger log = LogManager.getLogger(getClass());
-
 	@Override
-	public String[] command(File... file) {
+	public String[] command(File... file) throws NbisException {
 		
 		File fileExec = file[0];
 		File filePath = file[1];
 
-		String[] commands = Stream.of(fileExec.getAbsolutePath(), "raw", filePath.getAbsolutePath(), "-r")
-				.toArray(String[]::new);
+		return Stream.of(fileExec.getAbsolutePath(), "raw", filePath.getAbsolutePath(), "-r").toArray(String[]::new);
 
-		return commands;
 	}
 
 }
