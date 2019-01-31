@@ -49,13 +49,10 @@ public class Main {
 
 		
 //		File file = new File("anelar-dir.bmp");
-		File file = new File("101_1.tif");
-		byte[] img = Files.readAllBytes(file.toPath());
 		
-		String contentType = new Tika().detect(img);
 		
-		System.out.println(contentType);
-		
+		System.out.println(System.getProperty("os.name"));
+		System.out.println(System.getProperty("os.arch"));
 		
 		
 	}

@@ -21,7 +21,6 @@ import br.com.nbis.exeption.NbisException;
 class NbisTest {
 
 	@Test
-	@Disabled
 	void encoderStringBmpToWSQ() {
 
 		try {
@@ -60,6 +59,7 @@ class NbisTest {
 	}
 	
 	@Test
+	@Disabled
 	void encoderByteArrayWSQ() {
 		
 		
