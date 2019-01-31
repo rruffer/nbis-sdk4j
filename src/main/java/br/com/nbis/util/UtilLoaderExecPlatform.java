@@ -33,7 +33,8 @@ public class UtilLoaderExecPlatform {
 			
 		} else if (System.getProperty("os.name").toUpperCase().contains(Sistemas.LINUX.name())) {
 			
-			typeFile = TypeExecutable.EXE.name().toLowerCase();
+//			typeFile = TypeExecutable.SH.name().toLowerCase();
+			typeFile = "";
 			
 			if(System.getProperty("os.arch").contains("64")) {
 				pathFile = SistemasPath.LINUX_X64.getPath();
