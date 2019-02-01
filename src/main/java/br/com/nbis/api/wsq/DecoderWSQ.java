@@ -22,7 +22,7 @@ public class DecoderWSQ {
 		Executables exec = Executables.DWSQ;
 
 		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
-		File fileExec = UtilLoader.getFile(pathFile);
+		File fileExec = UtilLoader.getFile(pathFile, exec);
 
 		try {
 

@@ -79,7 +79,7 @@ public class EncoderWSQ {
 
 		Executables exec = Executables.CWSQ;
 		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
-		File fileExec = UtilLoader.getFile(pathFile);
+		File fileExec = UtilLoader.getFile(pathFile, exec);
 
 		try {
 			Command command = exec.getCommands();
@@ -97,7 +97,7 @@ public class EncoderWSQ {
 
 		Executables exec = Executables.CWSQ;
 		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
-		File fileExec = UtilLoader.getFile(pathFile);
+		File fileExec = UtilLoader.getFile(pathFile, exec);
 
 		try {
 			Command command = exec.getCommands();

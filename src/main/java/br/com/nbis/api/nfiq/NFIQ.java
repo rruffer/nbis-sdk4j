@@ -39,7 +39,7 @@ public class NFIQ {
 		Executables exec = Executables.NFIQ;
 
 		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
-		File fileExec = UtilLoader.getFile(pathFile);
+		File fileExec = UtilLoader.getFile(pathFile, exec);
 
 		try {
 

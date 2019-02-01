@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tika.Tika;
 
+import br.com.nbis.enums.Executables;
 import br.com.nbis.exeption.NbisException;
 
 public class UtilLoader {
@@ -26,11 +27,12 @@ public class UtilLoader {
 	 * Carrrega os arquivos
 	 * 
 	 * @param fileName
+	 * @param exec 
 	 * @return
 	 */
-	public static File getFile(String fileName) {
+	public static File getFile(String fileName, Executables exec) {
 
-		File file = new File(UtilConstants.TEMP_DIR_NBIS + File.separator + "cwsq.exe");
+		File file = new File(UtilConstants.TEMP_DIR_NBIS + File.separator + exec.name().toLowerCase());
 
 		try (InputStream stream = UtilLoader.class.getResourceAsStream(fileName)){
 			//file = File.createTempFile("tmp", null, null);

@@ -40,7 +40,7 @@ public class BOZORTH3 {
 		Executables exec = Executables.BOZORTH3;
 
 		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
-		File fileExec = UtilLoader.getFile(pathFile);
+		File fileExec = UtilLoader.getFile(pathFile, exec);
 
 		try {
 

@@ -3,6 +3,7 @@ package br.com.nbis;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 
 import javax.imageio.ImageIO;
@@ -53,6 +54,10 @@ public class Main {
 		
 		System.out.println(System.getProperty("os.name"));
 		System.out.println(System.getProperty("os.arch"));
+		
+//		Path path  = 
+		
+		System.out.println();
 		
 		
 	}

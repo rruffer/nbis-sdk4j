@@ -36,7 +36,7 @@ public class MINDTCT {
 		Executables exec = Executables.MINDTCT;
 
 		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
-		File fileExec = UtilLoader.getFile(pathFile);
+		File fileExec = UtilLoader.getFile(pathFile, exec);
 
 		try {
 
