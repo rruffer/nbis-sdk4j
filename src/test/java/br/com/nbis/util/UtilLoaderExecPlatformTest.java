@@ -11,7 +11,7 @@ class UtilLoaderExecPlatformTest {
 	@Test
 	void test() {
 		String pathFile = UtilLoaderExecPlatform.getPathfile(Executables.CWSQ);
-		assertEquals("/win-64/bin/cwsq.exe", pathFile);
+		assertEquals("/win-64/bin/cwsq", pathFile.replace(".exe", ""));
 	}
 
 }
