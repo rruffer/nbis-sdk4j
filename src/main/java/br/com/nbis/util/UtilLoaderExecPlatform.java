@@ -22,7 +22,7 @@ public class UtilLoaderExecPlatform {
 		
 		if(System.getProperty("os.name").toUpperCase().contains(Sistemas.WINDOWS.name())) {
 			
-			typeFile = TypeExecutable.EXE.name().toLowerCase();
+			typeFile = "." + TypeExecutable.EXE.name().toLowerCase();
 			
 			if(System.getProperty("os.arch").contains("64")) {
 				pathFile = SistemasPath.WINDOWS_X64.getPath();
@@ -45,7 +45,7 @@ public class UtilLoaderExecPlatform {
 			
 		}
 		
-		pathFile =String.format("%s%s.%s", pathFile, nameFile, typeFile);
+		pathFile =String.format("%s%s%s", pathFile, nameFile, typeFile);
 		
 		log.debug("Caminho do arquivo: " + pathFile);
 		

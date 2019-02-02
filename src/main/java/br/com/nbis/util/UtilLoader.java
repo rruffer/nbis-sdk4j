@@ -33,11 +33,14 @@ public class UtilLoader {
 	public static File getFile(String fileName, Executables exec) {
 
 		File file = new File(UtilConstants.TEMP_DIR_NBIS + File.separator + exec.name().toLowerCase());
-
+		
 		try (InputStream stream = UtilLoader.class.getResourceAsStream(fileName)){
 			//file = File.createTempFile("tmp", null, null);
 			log.debug(file.getAbsolutePath());
 			FileUtils.copyInputStreamToFile(stream, file);
+			file.setExecutable(true);
+			file.setReadable(true);
+			file.setWritable(true);
 		} catch (Exception e) {
 			log.error("Erro ao criar arquivo temporário: ", e);
 		}
