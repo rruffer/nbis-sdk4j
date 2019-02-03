@@ -7,11 +7,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import br.com.nbis.api.Nbis;
 import br.com.nbis.exeption.NbisException;
+import br.com.nbis.util.UtilLoader;
 
 /**
  * @link https://blog.travis-ci.com/2018-10-11-windows-early-release
@@ -19,8 +22,16 @@ import br.com.nbis.exeption.NbisException;
  *
  */
 class NbisTest {
+	
+	static File image = null;
+	
+	@BeforeAll
+	static void initAll() {
+		image =  UtilLoader.getFileTest("anelar-dir.bmp");
+	}
 
 	@Test
+	@Disabled
 	void encoderStringBmpToWSQ() {
 
 		try {
@@ -59,7 +70,6 @@ class NbisTest {
 	}
 	
 	@Test
-	@Disabled
 	void encoderByteArrayWSQ() {
 		
 		
@@ -141,6 +151,11 @@ class NbisTest {
 
 		assertEquals(572, bozorth3);
 
+	}
+	
+	@AfterAll
+	static void tearDownAll() {
+		image.delete();
 	}
 
 }

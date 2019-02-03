@@ -48,7 +48,31 @@ public class UtilLoader {
 		return file;
 
 	}
-
+	
+	/**
+	 * Carrrega os arquivos
+	 * 
+	 * @param fileName
+	 * @param exec 
+	 * @return
+	 */
+	public static File getFileTest(String fileName) {
+		
+		File file = new File(System.getProperty("user.dir") + File.separator + fileName);
+		
+		try (InputStream stream = UtilLoader.class.getResourceAsStream("/img/" + fileName)){
+			FileUtils.copyInputStreamToFile(stream, file);
+			file.setExecutable(true);
+			file.setReadable(true);
+			file.setWritable(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return file;
+		
+	}
+	
 	/**
 	 * Carrrega os arquivos
 	 * 
@@ -104,13 +128,7 @@ public class UtilLoader {
 			throw new NbisException("Arquivo não é uma imagem!");
 		}
 
-		File baseDir = new File(UtilConstants.TEMP_DIR_NBIS);
-
-		if (baseDir.exists()) {
-			FileUtils.deleteDirectory(baseDir);
-		}
-
-		baseDir.mkdir();
+		File baseDir = createTempDir();
 
 		Path path = Paths.get(baseDir.getAbsolutePath() + File.separator + "outputWSQ." + contentType.getExtension());
 
@@ -123,6 +141,19 @@ public class UtilLoader {
 		return path.toFile();
 
 	}
+
+	public static File createTempDir() throws IOException {
+		File baseDir = new File(UtilConstants.TEMP_DIR_NBIS);
+
+		if (baseDir.exists()) {
+			FileUtils.deleteDirectory(baseDir);
+		}
+
+		baseDir.mkdir();
+		return baseDir;
+	}
+	
+	
 
 	/*
 	 * public File getFile(String fileName) {
