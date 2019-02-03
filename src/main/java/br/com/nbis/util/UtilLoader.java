@@ -24,18 +24,17 @@ public class UtilLoader {
 	}
 
 	/**
-	 * Carrrega os arquivos
-	 * 
+	 * Carrrega os arquivos executáveis
 	 * @param fileName
-	 * @param exec 
+	 * @param exec
 	 * @return
 	 */
 	public static File getFile(String fileName, Executables exec) {
 
 		File file = new File(UtilConstants.TEMP_DIR_NBIS + File.separator + exec.name().toLowerCase());
-		
-		try (InputStream stream = UtilLoader.class.getResourceAsStream(fileName)){
-			//file = File.createTempFile("tmp", null, null);
+
+		try (InputStream stream = UtilLoader.class.getResourceAsStream(fileName)) {
+			// file = File.createTempFile("tmp", null, null);
 			log.debug(file.getAbsolutePath());
 			FileUtils.copyInputStreamToFile(stream, file);
 			file.setExecutable(true);
@@ -48,52 +47,29 @@ public class UtilLoader {
 		return file;
 
 	}
-	
+
 	/**
-	 * Carrrega os arquivos
-	 * 
+	 * Carrrega os arquivos na pasta raíz. Só usado para testes
 	 * @param fileName
-	 * @param exec 
+	 * @param exec
 	 * @return
 	 */
 	public static File getFileTest(String fileName) {
-		
+
 		File file = new File(System.getProperty("user.dir") + File.separator + fileName);
-		
-		try (InputStream stream = UtilLoader.class.getResourceAsStream("/img/" + fileName)){
+
+		try (InputStream stream = UtilLoader.class.getResourceAsStream("/img/" + fileName)) {
 			FileUtils.copyInputStreamToFile(stream, file);
 			file.setExecutable(true);
 			file.setReadable(true);
 			file.setWritable(true);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Erro ao criar arquivo local: ", e);
 		}
-		
+
 		return file;
-		
+
 	}
-	
-	/**
-	 * Carrrega os arquivos
-	 * 
-	 * @param fileName
-	 * @return
-	 *//*
-		 * public static File getFile(String fileName) {
-		 * 
-		 * InputStream stream = UtilLoader.class.getResourceAsStream(fileName); File
-		 * file = null;
-		 * 
-		 * try { file = File.createTempFile("tmp", null, null);
-		 * log.debug(file.getAbsolutePath()); FileUtils.copyInputStreamToFile(stream,
-		 * file); } catch (Exception e) {
-		 * log.error("Erro ao criar arquivo temporário: ", e); }
-		 * 
-		 * 
-		 * return file;
-		 * 
-		 * }
-		 */
 
 	public static File copyFileForTempDir(String fileName) throws IOException {
 
@@ -103,20 +79,13 @@ public class UtilLoader {
 
 	public static File copyFileForTempDir(File srcFile) throws IOException {
 
-		File baseDir = new File(UtilConstants.TEMP_DIR_NBIS);
+		File tempDir = createTempDir();
 
-		if (baseDir.exists()) {
-			FileUtils.deleteDirectory(baseDir);
-		}
+		log.debug(tempDir.getAbsolutePath());
 
-		baseDir.mkdir();
+		FileUtils.copyFileToDirectory(srcFile, tempDir);
 
-		log.debug(baseDir.getAbsolutePath());
-
-		// forma 1
-		FileUtils.copyFileToDirectory(srcFile, baseDir);
-
-		return new File(baseDir.getAbsolutePath() + File.separator + srcFile.getName());
+		return new File(tempDir.getAbsolutePath() + File.separator + srcFile.getName());
 
 	}
 
@@ -127,10 +96,9 @@ public class UtilLoader {
 		if (!contentType.getType().equals("image")) {
 			throw new NbisException("Arquivo não é uma imagem!");
 		}
+		File tempDir = createTempDir();
 
-		File baseDir = createTempDir();
-
-		Path path = Paths.get(baseDir.getAbsolutePath() + File.separator + "outputWSQ." + contentType.getExtension());
+		Path path = Paths.get(tempDir.getAbsolutePath() + File.separator + "outputWSQ." + contentType.getExtension());
 
 		try {
 			Files.write(path, img);
@@ -143,33 +111,28 @@ public class UtilLoader {
 	}
 
 	public static File createTempDir() throws IOException {
-		File baseDir = new File(UtilConstants.TEMP_DIR_NBIS);
+		File tempDir = new File(UtilConstants.TEMP_DIR_NBIS);
 
-		if (baseDir.exists()) {
-			FileUtils.deleteDirectory(baseDir);
-		}
+		/*
+		 * if (baseDir.exists()) { FileUtils.deleteDirectory(baseDir); }
+		 */
 
-		baseDir.mkdir();
-		return baseDir;
+		tempDir.mkdir();
+		
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				try {
+					FileUtils.deleteDirectory(tempDir);
+					log.debug("Apaguei a pasta !");
+				} catch (IOException e) {
+					log.error("Erro ao criar pasta temporária", e);
+				}
+			}
+		});
+		
+		return tempDir;
 	}
-	
-	
-
-	/*
-	 * public File getFile(String fileName) {
-	 * 
-	 * InputStream stream = getClass().getResourceAsStream(fileName); File file =
-	 * null; try { // file = File.createTempFile("tmp", ".exe", new File("D:/"));
-	 * file = File.createTempFile("tmp", null, null);
-	 * log.debug(file.getAbsolutePath()); FileUtils.copyInputStreamToFile(stream,
-	 * file); } catch (IOException e) {
-	 * log.error("Erro ao criar arquivo temporário: ", e); }
-	 * 
-	 * 
-	 * return file;
-	 * 
-	 * }
-	 */
 
 }
 

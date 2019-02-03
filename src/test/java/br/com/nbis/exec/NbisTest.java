@@ -24,18 +24,18 @@ import br.com.nbis.util.UtilLoader;
 class NbisTest {
 	
 	static File image = null;
+	static String nameFile = "anelar-esq.bmp";
 	
 	@BeforeAll
 	static void initAll() {
-		image =  UtilLoader.getFileTest("anelar-dir.bmp");
+		image =  UtilLoader.getFileTest(nameFile);
 	}
 
 	@Test
-	@Disabled
 	void encoderStringBmpToWSQ() {
 
 		try {
-			assertTrue(Nbis.wsq().encoder("anelar-dir.bmp").getFile().exists());
+			assertTrue(Nbis.wsq().encoder(nameFile).getFile().exists());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -70,6 +70,7 @@ class NbisTest {
 	}
 	
 	@Test
+	@Disabled
 	void encoderByteArrayWSQ() {
 		
 		
