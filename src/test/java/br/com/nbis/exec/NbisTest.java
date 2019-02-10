@@ -55,12 +55,10 @@ class NbisTest {
 	}
 
 	@Test
-	@Disabled
 	void encoderFileWSQ() {
-		File file = new File("anelar-dir.bmp");
+		File file = new File(nameFile);
 		
 		try {
-			Nbis.wsq().encoder(file);
 			assertTrue(Nbis.wsq().encoder(file).getFile().exists());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -70,12 +68,11 @@ class NbisTest {
 	}
 	
 	@Test
-	@Disabled
 	void encoderByteArrayWSQ() {
 		
 		
 		try {
-			File file = new File("anelar-dir.bmp");
+			File file = new File(nameFile);
 			byte[] readAllBytes = Files.readAllBytes(file.toPath());
 			assertTrue(Nbis.wsq().encoder(readAllBytes).getFile().exists());
 		} catch (NbisException e) {

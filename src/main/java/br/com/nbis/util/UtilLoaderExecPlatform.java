@@ -1,7 +1,5 @@
 package br.com.nbis.util;
 
-import java.io.File;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,6 +11,10 @@ import br.com.nbis.enums.TypeExecutable;
 public class UtilLoaderExecPlatform {
 	
 	private static final Logger log = LogManager.getLogger(UtilLoaderExecPlatform.class);
+	
+	private UtilLoaderExecPlatform() {
+
+	}
 	
 	public static String getPathfile(Executables exec) {
 		
@@ -33,7 +35,6 @@ public class UtilLoaderExecPlatform {
 			
 		} else if (System.getProperty("os.name").toUpperCase().contains(Sistemas.LINUX.name())) {
 			
-//			typeFile = TypeExecutable.SH.name().toLowerCase();
 			typeFile = "";
 			
 			if(System.getProperty("os.arch").contains("64")) {
