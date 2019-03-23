@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 
 import br.com.nbis.api.Nbis;
 import br.com.nbis.exeption.NbisException;
