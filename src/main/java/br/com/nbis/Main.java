@@ -1,5 +1,7 @@
 package br.com.nbis;
 
+import static java.lang.System.out;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -52,12 +54,12 @@ public class Main {
 //		File file = new File("anelar-dir.bmp");
 		
 		
-		System.out.println(System.getProperty("os.name"));
-		System.out.println(System.getProperty("os.arch"));
+		out.println(System.getProperty("os.name"));
+		out.println(System.getProperty("os.arch"));
 		
 //		Path path  = 
 		
-		System.out.println();
+		out.println();
 		
 		
 		
