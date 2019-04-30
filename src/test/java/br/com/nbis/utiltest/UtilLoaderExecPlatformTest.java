@@ -1,4 +1,4 @@
-package br.com.nbis.util;
+package br.com.nbis.utiltest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.condition.OS;
 
 import br.com.nbis.enums.Executables;
 import br.com.nbis.interfaces.TestWindows64;
+import br.com.nbis.util.UtilLoaderExecPlatform;
 
 class UtilLoaderExecPlatformTest {
 

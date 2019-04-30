@@ -48,28 +48,6 @@ public class UtilLoader {
 
 	}
 
-	/**
-	 * Carrrega os arquivos na pasta raíz. Só usado para testes
-	 * @param fileName
-	 * @param exec
-	 * @return
-	 */
-	public static File getFileTest(String fileName) {
-
-		File file = new File(System.getProperty("user.dir") + File.separator + fileName);
-
-		try (InputStream stream = UtilLoader.class.getResourceAsStream("/img/" + fileName)) {
-			FileUtils.copyInputStreamToFile(stream, file);
-			file.setExecutable(true);
-			file.setReadable(true);
-			file.setWritable(true);
-		} catch (Exception e) {
-			log.error("Erro ao criar arquivo local: ", e);
-		}
-
-		return file;
-
-	}
 
 	public static File copyFileForTempDir(String fileName) throws IOException {
 

@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 
 import br.com.nbis.api.Nbis;
 import br.com.nbis.exeption.NbisException;
-import br.com.nbis.util.UtilLoader;
+import br.com.nbis.utiltest.UtilLoader;
 
 /**
  * @link https://blog.travis-ci.com/2018-10-11-windows-early-release

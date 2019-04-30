@@ -1,9 +1,5 @@
 package br.com.nbis.api;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +7,6 @@ import br.com.nbis.api.bozorth3.BOZORTH3;
 import br.com.nbis.api.mindtct.MINDTCT;
 import br.com.nbis.api.nfiq.NFIQ;
 import br.com.nbis.api.wsq.WSQ;
-import br.com.nbis.util.UtilLoader;
 
 /**
  * @link http://www.hjort.co/2015/12/evaluating-nbis-using-fvc2004-databases-part1.html
