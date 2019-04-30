@@ -2,12 +2,14 @@ package br.com.nbis.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
 import br.com.nbis.enums.Executables;
+import br.com.nbis.interfaces.TestWindows64;
 
 class UtilLoaderExecPlatformTest {
 
@@ -18,9 +20,8 @@ class UtilLoaderExecPlatformTest {
 		String pathfile = UtilLoaderExecPlatform.getPathfile(Executables.CWSQ);
 		assertEquals("/win-32/bin/cwsq.exe", pathfile);
 	}
-	@Test
-	@EnabledOnOs(OS.WINDOWS)
-	@EnabledIfSystemProperty(named="os.arch", matches=".*64.*")
+	
+	@TestWindows64
 	void testWindows64() {
 		String pathfile = UtilLoaderExecPlatform.getPathfile(Executables.CWSQ);
 		assertEquals("/win-64/bin/cwsq.exe", pathfile);
