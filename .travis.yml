@@ -1,13 +1,13 @@
 language: java
 os: 
   - linux
-  - windows
+#  - windows
 jdk:
   - oraclejdk8
 script: 
   - mvn clean package
-bash: 
-  - apt-get install oraclejdk8 
+#bash: 
+#  - apt-get install oraclejdk8 
 
 
 
