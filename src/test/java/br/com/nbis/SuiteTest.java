@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
 @SelectPackages("br.com.nbis")
-@SuiteDisplayName("Testes SKD Nbis 5.0.0")
+@SuiteDisplayName("Testes SDK Nbis 5.0.0")
 public class SuiteTest {
 
 }
