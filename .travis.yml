@@ -1,7 +1,10 @@
 language: java
 os: 
   - linux
-#  - windows
+  - windows
+  
+install: choco install jdk8 --x64
+  
 jdk:
   - oraclejdk8
 script: 
