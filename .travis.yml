@@ -1,7 +1,7 @@
 language: java
 os: 
   - linux
-#  - windows
+#  - windows https://travis-ci.community/t/java-support-on-windows/286/6
 #    install: choco install jdk8 --x64
 jdk:
   - oraclejdk8
