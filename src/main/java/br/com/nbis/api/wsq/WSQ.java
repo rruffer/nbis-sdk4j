@@ -48,9 +48,13 @@ public class WSQ {
 	 * }
 	 */
 
-	public void decoder(String string) {
-		decoderWSQ.decoder(string);
+	public DecoderWSQ decoder(String img) throws IOException {
+		return new DecoderWSQ(img);
 		
+	}
+	
+	public DecoderWSQ decoder(File img) throws IOException {
+		return new DecoderWSQ(img);
 	}
 
 

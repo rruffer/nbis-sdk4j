@@ -50,20 +50,25 @@ public class UtilLoader {
 
 
 	public static File copyFileForTempDir(String fileName) throws IOException {
-
 		return copyFileForTempDir(new File(fileName));
-
 	}
 
 	public static File copyFileForTempDir(File srcFile) throws IOException {
-
+		
+		
 		File tempDir = createTempDir();
+		File fileTemp = new File(tempDir.getAbsolutePath() + File.separator + srcFile.getName());
+		
+		if(fileTemp.exists()) {
+			return fileTemp;
+		}
+		
 
 		log.debug(tempDir.getAbsolutePath());
 
 		FileUtils.copyFileToDirectory(srcFile, tempDir);
 
-		return new File(tempDir.getAbsolutePath() + File.separator + srcFile.getName());
+		return fileTemp;
 
 	}
 
@@ -97,7 +102,7 @@ public class UtilLoader {
 
 		tempDir.mkdir();
 		
-		Runtime.getRuntime().addShutdownHook(new Thread() {
+	/*	Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
 				try {
@@ -107,7 +112,7 @@ public class UtilLoader {
 					log.error("Erro ao criar pasta temporária", e);
 				}
 			}
-		});
+		});*/
 		
 		return tempDir;
 	}

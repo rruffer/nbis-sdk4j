@@ -59,6 +59,34 @@ public class NFIQ {
 		return result;
 
 	}
+	
+	public int quality(File file) {
+		
+		int result = 0;
+		
+		Executables exec = Executables.NFIQ;
+		
+		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
+		File fileExec = UtilLoader.getFile(pathFile, exec);
+		
+		try {
+			
+			Command command = exec.getCommands();
+			String[] commands = command.command(fileExec, file);
+			
+			List<String> execRuntime = ExecRuntime.execRuntime(commands);
+			
+			result = getQualidade(execRuntime.get(0));
+			
+		} catch (Exception e) {
+			log.error("Erro ao codificar imagem: ", e);
+		} finally {
+			fileExec.deleteOnExit();
+		}
+		
+		return result;
+		
+	}
 
 	private int getQualidade(String nfiq) {
 

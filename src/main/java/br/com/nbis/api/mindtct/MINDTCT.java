@@ -1,6 +1,8 @@
 package br.com.nbis.api.mindtct;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,30 +10,49 @@ import org.apache.logging.log4j.Logger;
 import br.com.nbis.command.Command;
 import br.com.nbis.enums.Executables;
 import br.com.nbis.exec.ExecRuntime;
+import br.com.nbis.exeption.NbisException;
 import br.com.nbis.util.UtilLoader;
 import br.com.nbis.util.UtilLoaderExecPlatform;
+import br.com.nbis.util.UtilWSQ;
 
 public class MINDTCT {
 	
 	private final Logger log = LogManager.getLogger(getClass());
 
-	private static MINDTCT instance;
+	private File imageFile;
+	private File outputFile;
 
-	private MINDTCT() {
+	public MINDTCT() {
 
 	}
 
-	public static synchronized MINDTCT getInstance() {
-		if (instance == null) {
-			instance = new MINDTCT();
-		}
-
-		return instance;
+	public MINDTCT(String img) throws IOException {
+		this.imageFile = UtilLoader.copyFileForTempDir(img);
+		this.outputFile = UtilWSQ.fileWsq(imageFile);
+		template();
 	}
 
-	public void template(String img) {
+	public MINDTCT(File img) throws IOException {
+		this.imageFile = UtilLoader.copyFileForTempDir(img);
+		this.outputFile = UtilWSQ.fileXyt(imageFile);
+		template();
+	}
 
-		File file = new File(img);
+	public MINDTCT(byte[] img) throws IOException, NbisException {
+		this.imageFile = UtilLoader.createFileInTempDir(img);
+		this.outputFile = UtilWSQ.fileWsq(imageFile);
+		template();
+	}
+
+	public File getFile() {
+		return this.outputFile;
+	}
+
+	public byte[] getByteArray() throws IOException {
+		return Files.readAllBytes(this.outputFile.toPath());
+	}
+
+	private void template() {
 
 		Executables exec = Executables.MINDTCT;
 
@@ -41,7 +62,7 @@ public class MINDTCT {
 		try {
 
 			Command command = exec.getCommands();
-			String[] commands = command.command(fileExec, file);
+			String[] commands = command.command(fileExec, imageFile);
 
 			ExecRuntime.execRuntime(commands);
 

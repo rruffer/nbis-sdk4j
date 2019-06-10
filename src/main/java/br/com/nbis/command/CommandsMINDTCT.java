@@ -15,7 +15,8 @@ public class CommandsMINDTCT implements Command{
 		File filePath = file[1];
 		
 		//linha de comando mindtct.exe -b -m1 digital.wsq digital
-		return Stream.of(fileExec.getAbsolutePath(), "-b", "-m1", filePath.getAbsolutePath(), UtilString.removeExtension(filePath.getName())).toArray(String[]::new);
+		return Stream.of(fileExec.getAbsolutePath(), "-b", "-m1", filePath.getAbsolutePath(), UtilString.removeExtension(filePath.getAbsolutePath())).toArray(String[]::new);
+//		return Stream.of(fileExec.getAbsolutePath(), "-b", "-m1", filePath.getAbsolutePath(), UtilString.removeExtension(filePath.getName())).toArray(String[]::new);
 		
 	}
 

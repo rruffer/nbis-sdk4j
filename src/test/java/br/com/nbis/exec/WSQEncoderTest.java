@@ -1,7 +1,6 @@
 package br.com.nbis.exec;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 
 import br.com.nbis.api.Nbis;
 import br.com.nbis.exeption.NbisException;
@@ -22,13 +20,13 @@ import br.com.nbis.utiltest.UtilLoader;
  * @author rodolfo.mindtek
  *
  */
-class NbisTest {
+class WSQEncoderTest {
 	
 	static File image = null;
 	static String nameFile = "anelar-esq.bmp";
 	
 	@BeforeAll
-	static void initAll() {
+	static void startAll() {
 		image =  UtilLoader.getFileTest(nameFile);
 	}
 
@@ -65,12 +63,10 @@ class NbisTest {
 			e.printStackTrace();
 		}
 
-
 	}
 	
 	@Test
 	void encoderByteArrayWSQ() {
-		
 		
 		try {
 			File file = new File(nameFile);
@@ -82,78 +78,10 @@ class NbisTest {
 			e.printStackTrace();
 		}
 		
-		
 	}
 
-	@Test
-	@Disabled
-	void decoderWSQ() {
-
-		try {
-			Nbis.wsq().encoder("anelar-dir.bmp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Nbis.wsq().decoder("anelar-dir.wsq");
-
-		assertTrue(new File("anelar-dir.raw").exists());
-	}
-
-	@Test
-	@Disabled
-	void nfiq() {
-
-		try {
-			Nbis.wsq().encoder("anelar-dir.bmp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int nfiq = Nbis.nfiq("anelar-dir.wsq");
-
-		assertEquals(100, nfiq);
-
-	}
-
-	@Test
-	@Disabled
-	void mindtct() {
-
-		try {
-			Nbis.wsq().encoder("anelar-dir.bmp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Nbis.mindtct("anelar-dir.wsq");
-
-		assertTrue(new File("anelar-dir.xyt").exists());
-
-	}
-
-	@Test
-	@Disabled
-	void bozorth3() {
-
-		try {
-			Nbis.wsq().encoder("anelar-dir.bmp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Nbis.mindtct("anelar-dir.wsq");
-
-		int bozorth3 = Nbis.bozorth3("anelar-dir.xyt", "anelar-dir.xyt");
-
-		assertEquals(572, bozorth3);
-
-	}
-	
 	@AfterAll
-	static void tearDownAll() {
+	static void endDownAll() {
 		image.delete();
 	}
 
