@@ -28,6 +28,7 @@ public class CommandsCWSQ implements Command{
 			image = ImageIO.read(filePath);
 		} catch (IOException e) {
 			log.error("CommandsCWSQ: ", e);
+			throw new NbisException("Erro ao converter imagem: " + e.getMessage());
 		}
 		String dimencoesImg = String.format("%d,%d,%d,%d", image.getWidth(), image.getHeight(), image.getColorModel().getPixelSize(), 500);
 		//linha de comando cwsq.exe .75 wsq digital.png -r 800,750,8,500

@@ -53,43 +53,6 @@ public class EncoderWSQ {
 		return Files.readAllBytes(this.outputFile.toPath());
 	}
 
-	/*public void encoder(byte[] img) {
-
-		String contentType = new Tika().detect(img);
-
-		File temp = new File(System.getProperty("java.io.tmpdir") + "nbis");
-		temp.mkdir();
-		Path path = Paths.get(temp.getAbsolutePath() + File.separator + "teste." + contentType.split("/")[1]);
-
-		try {
-			Files.write(path, img);
-		} catch (IOException e) {
-			log.error("Erro ao converter imagem: ", e);
-		}
-
-		encoder(new File(
-				System.getProperty("java.io.tmpdir") + "nbis" + File.separator + "teste." + contentType.split("/")[1]));
-
-	}*/
-
-/*	public void encoder(File img) {
-
-		Executables exec = Executables.CWSQ;
-		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
-		File fileExec = UtilLoader.getFile(pathFile, exec);
-
-		try {
-			Command command = exec.getCommands();
-			String[] commands = command.command(fileExec, img);
-			ExecRuntime.execRuntime(commands);
-		} catch (Exception e) {
-			log.error("Erro ao codificar imagem: ", e);
-		} finally {
-			fileExec.deleteOnExit();
-		}
-
-	}*/
-
 	private void encoder() {
 
 		Executables exec = Executables.CWSQ;

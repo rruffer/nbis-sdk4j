@@ -28,7 +28,7 @@ class NfiqTest {
 	}
 
 	@Test
-	void nfiq() {
+	void nfiqFile() {
 
 		try {
 		File fileWsq = Nbis.wsq().encoder(image).getFile();
@@ -42,6 +42,23 @@ class NfiqTest {
 		}
 
 
+	}
+	
+	@Test
+	void nfiqString() {
+		
+		try {
+			File fileWsq = Nbis.wsq().encoder(image).getFile();
+			int nfiq = Nbis.nfiq(fileWsq);
+			//Nbis.close();
+			
+			assertEquals(40, nfiq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	@AfterAll
