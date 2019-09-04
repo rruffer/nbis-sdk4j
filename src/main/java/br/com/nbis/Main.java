@@ -86,6 +86,10 @@ public class Main {
 		
 		out.print(bufferedImage.getWidth());
 		
+		/*String teste = "file.txt";
+		
+		System.out.println(teste.substring(teste.lastIndexOf(".")));*/ 
+		
 		
 	}
 
