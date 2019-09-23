@@ -15,5 +15,11 @@ public class CommandsNFIQ implements Command {
 
 		return Stream.of(fileExec.getAbsolutePath(), filePath.getAbsolutePath()).toArray(String[]::new);
 	}
+	
+	public String[] version(File... file) throws NbisException {
+		
+		File fileExec = file[0];
+		return Stream.of(fileExec.getAbsolutePath(), "-version").toArray(String[]::new);
+	}
 
 }

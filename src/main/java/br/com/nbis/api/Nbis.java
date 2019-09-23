@@ -67,6 +67,10 @@ public class Nbis {
 	public static int bozorth3(byte[] img1, byte[] img2) throws IOException, NbisException {
 		return BOZORTH3.getInstance().merge(img1, img2);
 	}
+	
+	public static String getVersion() {
+		return NFIQ.getInstance().version();
+	}
 
 	public static void close() {
 		try {

@@ -1,0 +1,13 @@
+cjpegb.exe q=95 bmp anelar-esq.raw -r 512,512,8,500 -nonintrlv
+
+djpeg −colors 256 −bmp foo.jpg > foo.bmp converte imagem para 8bits
+
+dpyimage resolve o problema de decodificar o wsq, mas por algum motivo não tem no windows
+
+djpeg.exe -colors 256 -bmp download.jpg>teste2.bmp
+
+jnbis decompress wsq
+
+image4j convert image para 8 bits
+
+Os utilitários cjpegl e djpegl codificam e decodificam arquivos JPEG sem perdas

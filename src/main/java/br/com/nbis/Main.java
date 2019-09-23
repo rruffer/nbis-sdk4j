@@ -2,21 +2,12 @@ package br.com.nbis;
 
 import static java.lang.System.out;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 
-import javax.imageio.ImageIO;
+import org.apache.commons.io.FilenameUtils;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.tika.Tika;
-import org.apache.tika.metadata.TIFF;
+import br.com.nbis.api.Nbis;
 
 /**
  * {@link} https://www.geeksforgeeks.org/jvm-shutdown-hook-java/
@@ -68,7 +59,7 @@ public class Main {
 		
 		out.println();
 		
-		File file = new File("anelar-esq.wsq");
+	/*	File file = new File("anelar-esq.wsq");
 		
 		InputStream inputStream = new FileInputStream(file);
 		
@@ -84,12 +75,15 @@ public class Main {
 		
 		out.println(bufferedImage.getHeight());
 		
-		out.print(bufferedImage.getWidth());
+		out.print(bufferedImage.getWidth());*/
 		
-		/*String teste = "file.txt";
+		String teste = "file.txt";
 		
-		System.out.println(teste.substring(teste.lastIndexOf(".")));*/ 
+//		System.out.println(teste.substring(teste.lastIndexOf("."))); 
 		
+		System.out.println(FilenameUtils.getExtension(teste));
+		
+		Arrays.asList(Nbis.getVersion().split(",")).stream().forEach(System.out::println);;
 		
 	}
 

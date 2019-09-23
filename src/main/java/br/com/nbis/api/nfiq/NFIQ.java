@@ -1,12 +1,15 @@
 package br.com.nbis.api.nfiq;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.nbis.command.Command;
+import br.com.nbis.command.CommandsNFIQ;
 import br.com.nbis.enums.Executables;
 import br.com.nbis.exec.ExecRuntime;
 import br.com.nbis.util.UtilLoader;
@@ -79,6 +82,28 @@ public class NFIQ {
 			return 20;
 		default:
 			return 0;
+		}
+	}
+	
+	public String version() {
+		Executables exec = Executables.NFIQ;
+		
+		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
+		File fileExec = UtilLoader.getFile(pathFile, exec);
+		
+		try {
+			
+			String[] commands = new CommandsNFIQ().version(fileExec);
+			
+			List<String> execRuntime = ExecRuntime.execRuntime(commands);
+			
+			return execRuntime.stream().collect(Collectors.joining(","));
+			
+		} catch (Exception e) {
+			log.error("Erro ao codificar imagem: ", e);
+			return null;
+		} finally {
+			fileExec.deleteOnExit();
 		}
 	}
 

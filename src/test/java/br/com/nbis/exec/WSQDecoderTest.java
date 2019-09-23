@@ -32,8 +32,8 @@ class WSQDecoderTest {
 	void decoderWSQ() {
 
 		try {
-			File file = Nbis.wsq().encoder(nameFile).getFile();
-			DecoderWSQ decoder = Nbis.wsq().decoder(file);
+			File wsq = Nbis.wsq().encoder(nameFile).getFile();
+			DecoderWSQ decoder = Nbis.wsq().decoder(wsq);
 			
 			assertTrue(decoder.getFileNcm().exists());
 			assertTrue(decoder.getFileRaw().exists());

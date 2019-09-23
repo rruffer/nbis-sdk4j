@@ -35,7 +35,6 @@ public class BOZORTH3 {
 	public int merge(String img1, String img2) {
 		File file1 = new File(img1);
 		File file2 = new File(img2);
-		
 		return merge(file1, file2);
 	}
 	
