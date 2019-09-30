@@ -5,7 +5,7 @@
 
 Projeto Nbis em java.
 
-Progressos: 
+Progressos:
 
 - Cwsq - converte imagens em arquivos em .wsq - Concluído.
 - Dwsq - converte arquivos .wsq em imagens - Em andamento.
@@ -13,6 +13,7 @@ Progressos:
 - Mindtct - gera o template .xyz - Concluído.
 - Bozorth3 - faz o match entre as digitais - Em andamento
 
+
 Version Nbis 5.5.0
- 
+
 Under development ...
