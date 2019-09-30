@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.nbis.api.Nbis;
 import br.com.nbis.exeption.NbisException;
+import br.com.nbis.util.UtilImage;
 import br.com.nbis.utiltest.UtilLoader;
 
 /**
@@ -75,6 +76,22 @@ class WSQEncoderTest {
 		} catch (NbisException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Test
+	void gravarArquivoWSQ() {
+		
+		try {
+			byte[] array = Nbis.wsq().encoder(image).getByteArray();
+			
+			File file = new File("teste.wsq");
+			UtilImage.write(file.getAbsolutePath(), array);
+			
+			assertTrue(file.exists());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

@@ -48,7 +48,7 @@ class NfiqTest {
 	void nfiqString() {
 		
 		try {
-			File fileWsq = Nbis.wsq().encoder(image).getFile();
+			File fileWsq = Nbis.wsq().encoder(nameFile).getFile();
 			int nfiq = Nbis.nfiq(fileWsq);
 			//Nbis.close();
 			

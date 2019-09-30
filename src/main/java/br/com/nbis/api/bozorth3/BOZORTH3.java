@@ -60,7 +60,7 @@ public class BOZORTH3 {
 
 			List<String> execRuntime = ExecRuntime.execRuntime(commands);
 
-			result = Integer.valueOf(execRuntime.get(0).split(" ")[0]);
+			result = execRuntime.isEmpty() ? 0:Integer.valueOf(execRuntime.get(0).split(" ")[0]);
 
 		} catch (Exception e) {
 			log.error("Erro ao codificar imagem: ", e);
