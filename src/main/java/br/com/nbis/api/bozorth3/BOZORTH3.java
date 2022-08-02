@@ -35,6 +35,7 @@ public class BOZORTH3 {
 	public int merge(String img1, String img2) {
 		File file1 = new File(img1);
 		File file2 = new File(img2);
+		
 		return merge(file1, file2);
 	}
 	
@@ -60,7 +61,7 @@ public class BOZORTH3 {
 
 			List<String> execRuntime = ExecRuntime.execRuntime(commands);
 
-			result = execRuntime.isEmpty() ? 0:Integer.valueOf(execRuntime.get(0).split(" ")[0]);
+			result = Integer.valueOf(execRuntime.get(0).split(" ")[0]);
 
 		} catch (Exception e) {
 			log.error("Erro ao codificar imagem: ", e);

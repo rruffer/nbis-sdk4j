@@ -32,6 +32,10 @@ public class UtilLoader {
 	public static File getFile(String fileName, Executables exec) {
 
 		File file = new File(UtilConstants.TEMP_DIR_NBIS + File.separator + exec.name().toLowerCase());
+		
+		if(file.exists() && file.length() > 0) {
+			return file;
+		}
 
 		try (InputStream stream = UtilLoader.class.getResourceAsStream(fileName)) {
 			// file = File.createTempFile("tmp", null, null);
@@ -48,6 +52,36 @@ public class UtilLoader {
 
 	}
 
+	/**
+	 * Carrrega os arquivos dll
+	 * @param fileName
+	 * @return
+	 */
+	public static void setFileDll(String path, String fileName) {
+		
+		File file = new File(UtilConstants.TEMP_DIR_NBIS + File.separator + fileName);
+		String input = path + fileName;
+		log.info(input);
+		
+		if(file.exists() && file.length() > 0) {
+			return;
+		}
+		
+		try (InputStream stream = UtilLoader.class.getResourceAsStream(input)) {
+			// file = File.createTempFile("tmp", null, null);
+			log.debug(file.getAbsolutePath());
+			FileUtils.copyInputStreamToFile(stream, file);
+			file.setExecutable(true);
+			file.setReadable(true);
+			file.setWritable(true);
+		} catch (Exception e) {
+			log.error("Erro ao criar arquivo temporário: ", e);
+		}
+		
+		
+	}
+
+	
 
 	public static File copyFileForTempDir(String fileName) throws IOException {
 		return copyFileForTempDir(new File(fileName));
@@ -76,9 +110,10 @@ public class UtilLoader {
 
 		ContentType contentType = new ContentType(img);
 
-		if (!contentType.getType().equals("image")) {
+		/*if (!contentType.getType().equals("image")) {
 			throw new NbisException("Arquivo não é uma imagem!");
-		}
+		}*/
+		
 		File tempDir = createTempDir();
 
 		Path path = Paths.get(tempDir.getAbsolutePath() + File.separator + "outputWSQ." + contentType.getExtension());
@@ -95,6 +130,9 @@ public class UtilLoader {
 
 	public static File createTempDir() throws IOException {
 		File tempDir = new File(UtilConstants.TEMP_DIR_NBIS);
+		tempDir.setExecutable(true);
+		tempDir.setReadable(true);
+		tempDir.setWritable(true);
 
 		/*
 		 * if (baseDir.exists()) { FileUtils.deleteDirectory(baseDir); }

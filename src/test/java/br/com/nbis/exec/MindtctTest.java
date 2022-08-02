@@ -6,7 +6,8 @@ import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.nbis.api.Nbis;
@@ -22,8 +23,8 @@ class MindtctTest {
 	static File image = null;
 	static String nameFile = "anelar-esq.bmp";
 	
-	@BeforeAll
-	static void starttAll() {
+	@BeforeEach
+	void setup() {
 		image =  UtilLoader.getFileTest(nameFile);
 	}
 
@@ -42,9 +43,14 @@ class MindtctTest {
 
 	}
 
-	@AfterAll
-	static void endAll() {
+	@AfterEach
+	void clean() {
 		image.delete();
+	}
+	
+	@AfterAll
+	static void finish() {
+		Nbis.close();
 	}
 
 }

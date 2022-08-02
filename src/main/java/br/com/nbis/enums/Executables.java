@@ -13,7 +13,8 @@ public enum Executables {
 	CWSQ(new CommandsCWSQ()),
 	DWSQ(new CommandsDWSQ()),
 	MINDTCT(new CommandsMINDTCT()),
-	NFIQ(new CommandsNFIQ());
+	NFIQ(new CommandsNFIQ()),
+	NFIQ2(new CommandsNFIQ());
 	
 	private Command commands;
 	

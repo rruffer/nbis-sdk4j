@@ -10,9 +10,11 @@ import org.apache.logging.log4j.Logger;
 import br.com.nbis.api.bozorth3.BOZORTH3;
 import br.com.nbis.api.mindtct.MINDTCT;
 import br.com.nbis.api.nfiq.NFIQ;
+import br.com.nbis.api.nfiq.NFIQ2;
 import br.com.nbis.api.wsq.WSQ;
 import br.com.nbis.exeption.NbisException;
 import br.com.nbis.util.UtilConstants;
+import br.com.nbis.util.UtilFile;
 
 /**
  * @link http://www.hjort.co/2015/12/evaluating-nbis-using-fvc2004-databases-part1.html
@@ -43,6 +45,22 @@ public class Nbis {
 	public static int nfiq(File file) {
 		return NFIQ.getInstance().quality(file);
 	}
+	
+	public static int nfiq(byte[] file) throws IOException, NbisException {
+		return NFIQ.getInstance().quality(file);
+	}
+
+	public static int nfiq2(String img) {
+		return NFIQ2.getInstance().quality(img);
+	}
+	
+	public static int nfiq2(File file) {
+		return NFIQ2.getInstance().quality(file);
+	}
+	
+	public static int nfiq2(byte[] file) throws IOException, NbisException {
+		return NFIQ2.getInstance().quality(file);
+	}
 
 	public static MINDTCT mindtct(String img) throws IOException {
 		return new MINDTCT(img);
@@ -67,15 +85,12 @@ public class Nbis {
 	public static int bozorth3(byte[] img1, byte[] img2) throws IOException, NbisException {
 		return BOZORTH3.getInstance().merge(img1, img2);
 	}
-	
-	public static String getVersion() {
-		return NFIQ.getInstance().version();
-	}
 
 	public static void close() {
 		try {
-			FileUtils.deleteDirectory(new File(UtilConstants.TEMP_DIR_NBIS));
-		} catch (IOException e) {
+			UtilFile.deletarDiretorios(UtilConstants.TEMP_DIR_NBIS);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

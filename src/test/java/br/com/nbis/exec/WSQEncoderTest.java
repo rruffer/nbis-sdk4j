@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import br.com.nbis.api.Nbis;
 import br.com.nbis.exeption.NbisException;
-import br.com.nbis.util.UtilImage;
 import br.com.nbis.utiltest.UtilLoader;
 
 /**
@@ -26,8 +26,8 @@ class WSQEncoderTest {
 	static File image = null;
 	static String nameFile = "anelar-esq.bmp";
 	
-	@BeforeAll
-	static void startAll() {
+	@BeforeEach
+	void setup() {
 		image =  UtilLoader.getFileTest(nameFile);
 	}
 
@@ -80,26 +80,15 @@ class WSQEncoderTest {
 		}
 		
 	}
-	
-	@Test
-	void gravarArquivoWSQ() {
-		
-		try {
-			byte[] array = Nbis.wsq().encoder(image).getByteArray();
-			
-			File file = new File("teste.wsq");
-			UtilImage.write(file.getAbsolutePath(), array);
-			
-			assertTrue(file.exists());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 
-	@AfterAll
-	static void endDownAll() {
+	@AfterEach
+	void clean() {
 		image.delete();
+	}
+	
+	@AfterAll
+	static void finish() {
+		Nbis.close();
 	}
 
 }
