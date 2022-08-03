@@ -2,12 +2,14 @@ package br.com.nbis;
 
 import static java.lang.System.out;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.Set;
 
 import org.apache.commons.io.FilenameUtils;
 
-import br.com.nbis.api.Nbis;
+import br.com.nbis.util.UtilLoader;
+import br.com.nbis.util.UtilLoaderExecPlatform;
 
 /**
  * {@link} https://www.geeksforgeeks.org/jvm-shutdown-hook-java/
@@ -83,7 +85,10 @@ public class Main {
 		
 		System.out.println(FilenameUtils.getExtension(teste));
 		
-		Arrays.asList(Nbis.getVersion().split(",")).stream().forEach(System.out::println);;
+		String pathOS = UtilLoaderExecPlatform.getPathOS();
+		
+		UtilLoader.setFileDll(pathOS, "Nfiq2Api.dll");
+		
 		
 	}
 

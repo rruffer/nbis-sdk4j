@@ -1,17 +1,16 @@
 package br.com.nbis.api.nfiq;
 
 import java.io.File;
-import java.util.Collections;
+import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.nbis.command.Command;
-import br.com.nbis.command.CommandsNFIQ;
 import br.com.nbis.enums.Executables;
 import br.com.nbis.exec.ExecRuntime;
+import br.com.nbis.exeption.NbisException;
 import br.com.nbis.util.UtilLoader;
 import br.com.nbis.util.UtilLoaderExecPlatform;
 
@@ -20,7 +19,7 @@ public class NFIQ {
 	private final Logger log = LogManager.getLogger(getClass());
 
 	private static NFIQ instance;
-
+	
 	private NFIQ() {
 
 	}
@@ -33,6 +32,11 @@ public class NFIQ {
 		return instance;
 	}
 
+	public int quality(byte[] img) throws IOException, NbisException {
+		File imageFile = UtilLoader.createFileInTempDir(img);
+		return quality(imageFile);
+	}
+	
 	public int quality(String img) {
 		return quality(new File(img));
 	}
@@ -82,28 +86,6 @@ public class NFIQ {
 			return 20;
 		default:
 			return 0;
-		}
-	}
-	
-	public String version() {
-		Executables exec = Executables.NFIQ;
-		
-		String pathFile = UtilLoaderExecPlatform.getPathfile(exec);
-		File fileExec = UtilLoader.getFile(pathFile, exec);
-		
-		try {
-			
-			String[] commands = new CommandsNFIQ().version(fileExec);
-			
-			List<String> execRuntime = ExecRuntime.execRuntime(commands);
-			
-			return execRuntime.stream().collect(Collectors.joining(","));
-			
-		} catch (Exception e) {
-			log.error("Erro ao codificar imagem: ", e);
-			return null;
-		} finally {
-			fileExec.deleteOnExit();
 		}
 	}
 

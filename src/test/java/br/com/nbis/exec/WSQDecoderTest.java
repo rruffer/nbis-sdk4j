@@ -6,7 +6,8 @@ import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.nbis.api.Nbis;
@@ -23,8 +24,8 @@ class WSQDecoderTest {
 	static File image = null;
 	static String nameFile = "anelar-esq.bmp";
 	
-	@BeforeAll
-	static void startAll() {
+	@BeforeEach
+	void setup() {
 		image =  UtilLoader.getFileTest(nameFile);
 	}
 
@@ -32,8 +33,8 @@ class WSQDecoderTest {
 	void decoderWSQ() {
 
 		try {
-			File wsq = Nbis.wsq().encoder(nameFile).getFile();
-			DecoderWSQ decoder = Nbis.wsq().decoder(wsq);
+			File file = Nbis.wsq().encoder(nameFile).getFile();
+			DecoderWSQ decoder = Nbis.wsq().decoder(file);
 			
 			assertTrue(decoder.getFileNcm().exists());
 			assertTrue(decoder.getFileRaw().exists());
@@ -44,9 +45,14 @@ class WSQDecoderTest {
 
 	}
 
-	@AfterAll
-	static void endDownAll() {
+	@AfterEach
+	void clean() {
 		image.delete();
+	}
+	
+	@AfterAll
+	static void finish() {
+		Nbis.close();
 	}
 
 }
