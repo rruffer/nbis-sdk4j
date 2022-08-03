@@ -3,11 +3,15 @@
 #https://travis-ci.community/t/oracle-jdk11-build-error/1865
 #https://travis-ci.community/t/install-of-oraclejdk11-is-failing/1856/4
 language: java
-os:
-  - linux
-#  - windows
 jdk:
 - oraclejdk8
+jobs:
+  include:
+    - 
+      os: linux
+      dist: trusty
 script: 
   - mvn clean package 
   - mvn cobertura:cobertura
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
