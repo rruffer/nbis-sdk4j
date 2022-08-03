@@ -1,0 +1,11 @@
+#https://www.tutorialspoint.com/yaml/yaml_comments.htm
+#https://travis-ci.community/t/solved-oraclejdk8-installation-failing-still-again/3428
+#https://travis-ci.community/t/oracle-jdk11-build-error/1865
+#https://travis-ci.community/t/install-of-oraclejdk11-is-failing/1856/4
+language: java
+dist: trusty
+jdk:
+- oraclejdk8
+script: 
+  - mvn clean package 
+  - mvn cobertura:cobertura
