@@ -9,8 +9,11 @@ import java.nio.file.Files;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import br.com.nbis.api.Nbis;
 import br.com.nbis.exeption.NbisException;
@@ -21,7 +24,8 @@ import br.com.nbis.utiltest.UtilLoader;
  * @author rodolfo.mindtek
  *
  */
-@DisplayName("Testes nfiq")
+@EnabledOnOs(OS.WINDOWS)
+@DisplayName("Tests NFIQ 2")
 class Nfiq2Test {
 	
 	static File image = null;
